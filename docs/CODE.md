@@ -10,7 +10,9 @@ stickynotes/
 ├── index.html              # HTML entry point; mounts the app into #root
 ├── src/
 │   ├── main.tsx            # Bootstraps React and renders <App /> into #root
-│   ├── App.tsx             # Root React component (currently a blank page)
+│   ├── App.tsx             # Root React component (renders <Notes />)
+│   ├── components/         # UI components, one folder per component
+│   ├── store/              # Zustand state stores
 │   ├── index.css           # Global styles: theme tokens, resets, layout base
 │   └── vite-env.d.ts       # Vite type declarations for TypeScript
 ├── public/
@@ -27,8 +29,10 @@ stickynotes/
 2. **`src/main.tsx`** finds `#root`, and renders the app inside React's
    `<StrictMode>` using `createRoot`. It also imports `index.css`, which is how
    the global stylesheet enters the bundle.
-3. **`src/App.tsx`** is the root component and the place to build the UI. It is
-   currently an empty page — a clean slate to build the sticky-notes features on.
+3. **`src/App.tsx`** is the root component; it renders the `Notes` feature.
+   `Notes` composes the generic `Layout` shell (a centered 1024×768 two-column
+   frame) with `Canvas` (left, where stickies live) and `Sidebar` (right, the
+   selected sticky's info).
 
 ## Tooling
 

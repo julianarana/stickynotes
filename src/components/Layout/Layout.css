@@ -1,0 +1,28 @@
+.app-frame {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-bg, #f4f3ec);
+}
+
+.layout {
+  width: 1024px;
+  height: 768px;
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.layout-left {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.layout-right {
+  flex: 0 0 20%;
+  border-left: 1px solid var(--border);
+}
