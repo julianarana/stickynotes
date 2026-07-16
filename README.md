@@ -1,16 +1,34 @@
-# React + Vite
+# Sticky Notes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite + TypeScript app for sticky notes.
 
-Currently, two official plugins are available:
+## Documentation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Code documentation](docs/CODE.md) — project structure, entry flow, and how the code fits together.
 
-## React Compiler
+## Getting started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Installed libraries
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Runtime dependencies
+
+| Library                                            | Why it's here                                                                    |
+| -------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`react`](https://react.dev/) / `react-dom`        | UI library used to build and render the app.                                     |
+| [`zustand`](https://zustand.docs.pmnd.rs/)         | Lightweight state management for shared app state (the "state handler").          |
+| [`react-icons`](https://react-icons.github.io/react-icons/) | Reuse third-party icons (Feather, Material, etc.) as React components, importing per-set so only the icons we use are bundled. |
+
+### Dev dependencies
+
+| Library                                       | Why it's here                                                                 |
+| --------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`typescript`](https://www.typescriptlang.org/) | Required — the project is written in TypeScript for type safety.            |
+| [`vite`](https://vite.dev/) + `@vitejs/plugin-react` | Dev server (HMR) and production bundler.                              |
+| `eslint` (+ plugins) & `@types/*`             | Linting and React/TypeScript type definitions.                                |
+
+For icon usage and the CSS approach, see the [code documentation](docs/CODE.md).
