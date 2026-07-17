@@ -9,6 +9,9 @@
   color: #08060d;
   font-size: 0.85rem;
   line-height: 1.35;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,4 +19,8 @@
   white-space: pre-wrap;
   word-break: break-word;
   overflow: hidden;
+}
+
+.sticky:active {
+  cursor: grabbing;
 }

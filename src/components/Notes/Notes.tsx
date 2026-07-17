@@ -6,10 +6,11 @@ import NoteCreator from "./NoteCreator";
 function Notes() {
   const notes = useNotesStore((state) => state.notes);
   const addNote = useNotesStore((state) => state.addNote);
+  const moveNote = useNotesStore((state) => state.moveNote);
 
   return (
     <Layout
-      left={<Canvas notes={notes} />}
+      left={<Canvas notes={notes} onMoveNote={moveNote} />}
       right={<NoteCreator onCreate={addNote} />}
     />
   );

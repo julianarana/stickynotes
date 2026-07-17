@@ -80,6 +80,12 @@ form state and, on **Create Note**, emits a `NoteDraft` through its `onCreate`
 prop — it does not touch the store itself. `Notes` passes the store's `addNote`
 as `onCreate`, so the store owns creation (it assigns the `id`).
 
+Dragging follows the same shape: `Canvas` owns the pointer-drag handlers
+(`handleDragStart`/`handleDragMove`/`handleDragEnd`) and uses pointer capture; on
+each move it clamps the note inside the canvas rect and calls the `onMoveNote`
+prop. `Sticky` just forwards its DOM pointer events (passing its own `note` on
+drag start). `Notes` wires `onMoveNote` to the store's `moveNote`.
+
 ## Types
 
 Shared domain types live in [`src/types/`](../src/types/), one file per type.
