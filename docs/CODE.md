@@ -46,9 +46,9 @@ stickynotes/
 
 ## State management
 
-We use [`zustand`](https://zustand.docs.pmnd.rs/) for shared app state — a small,
+I use [`zustand`](https://zustand.docs.pmnd.rs/) for shared app state — a small,
 hook-based store with no provider/boilerplate. Stores live in
-[`src/store/`](../src/store/), for this app we just have  one store 
+[`src/store/`](../src/store/), for this app I just have  one store 
 file named `useNotesStore.ts`.
 
 Components read exactly the slices they need, so they only re-render when those
@@ -148,9 +148,9 @@ To change how fields look everywhere, edit `forms/field.css` in one place.
 
 ## Using react-icons
 
-We use [`react-icons`](https://react-icons.github.io/react-icons/) to reuse
+I use [`react-icons`](https://react-icons.github.io/react-icons/) to reuse
 third-party icons as React components. Import icons from a specific set path so
-bundles stay lean (only the icons we use are included):
+bundles stay lean (only the icons I use are included):
 
 ```tsx
 import { FiPlus, FiTrash2 } from 'react-icons/fi' // Feather
@@ -162,9 +162,9 @@ import { MdPushPin } from 'react-icons/md'        // Material
 Icons inherit `currentColor`, so they automatically match the surrounding text
 color / theme.
 
-## How we use CSS
+## How I use CSS
 
-We use **plain global CSS** — no CSS-in-JS or utility framework.
+I use **plain global CSS** — no CSS-in-JS or utility framework.
 
 - **Single global stylesheet:** [`src/index.css`](../src/index.css) holds the
   theme, resets, and base layout. It's imported once in

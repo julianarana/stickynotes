@@ -4,6 +4,7 @@ A React + Vite + TypeScript app for sticky notes.
 
 ## Documentation
 
+- [Architecture overview](docs/OVERVIEW.md) — a short, prose introduction to how the app is built.
 - [Code documentation](docs/CODE.md) — project structure, entry flow, and how the code fits together.
 
 ## Getting started
