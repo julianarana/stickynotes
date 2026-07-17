@@ -1,0 +1,39 @@
+.button {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button--primary {
+  color: #fff;
+  background: #2563eb;
+  border-color: transparent;
+}
+
+.button--primary:hover {
+  background: #1d4ed8;
+}
+
+.button--secondary {
+  color: var(--text-h);
+  background: var(--bg);
+  border-color: var(--border);
+}
+
+.button--secondary:hover {
+  background: var(--app-bg, #f4f3ec);
+}

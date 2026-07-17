@@ -12,6 +12,8 @@ stickynotes/
 │   ├── main.tsx            # Bootstraps React and renders <App /> into #root
 │   ├── App.tsx             # Root React component (renders <Notes />)
 │   ├── components/         # UI components, one folder per component
+│   │   └── forms/          # Reusable form fields sharing one field.css
+│   ├── config/             # App constants (canvas size, default sticky geometry)
 │   ├── store/              # Zustand state stores
 │   ├── index.css           # Global styles: theme tokens, resets, layout base
 │   └── vite-env.d.ts       # Vite type declarations for TypeScript
@@ -62,6 +64,45 @@ function AddNoteButton() {
 
 See [`src/store/useNotesStore.ts`](../src/store/useNotesStore.ts) for the notes
 store pattern (state + actions defined together in `create`).
+
+## Forms
+
+Reusable form-field components live in [`src/components/forms/`](../src/components/forms/).
+They exist so that every input in the app shares **one set of CSS definitions**
+— style is defined once and stays consistent, instead of restyling raw
+`<input>` / `<textarea>` at each call site.
+
+Each field is a thin, prop-transparent wrapper over its native element and
+applies the shared `.field` class from
+[`forms/field.css`](../src/components/forms/field.css):
+
+- **`TextField`** extends `InputHTMLAttributes<HTMLInputElement>`, so it accepts
+  all native input props (`value`, `onChange`, `type`, `placeholder`,
+  `disabled`, `aria-*`, …).
+- **`TextArea`** extends `TextareaHTMLAttributes<HTMLTextAreaElement>` the same
+  way.
+- **`Button`** wraps `<button>` (always `type="button"`) and takes a `variant`
+  prop from the `ButtonVariant` enum — `Primary` (blue) or `Secondary` (white
+  with a border), defaulting to `Primary`. It does not accept `className`;
+  styling comes entirely from its own `Button.css`.
+
+Both also accept an optional **`label`** prop (a `ReactNode`). When provided, the
+field is wrapped by the shared [`Field`](../src/components/forms/Field/Field.tsx)
+component, which renders a `<label>` correctly associated with the control via a
+`useId`-generated id (or the caller's own `id` if passed). Without a `label`, the
+bare control is returned unchanged.
+
+A consumer `className` is merged after `field`, so callers can extend the shared
+style without losing it. Import via the folder barrel:
+
+```tsx
+import { TextField, TextArea } from './components/forms'
+
+<TextField label="Title" placeholder="Title" value={title} onChange={onTitleChange} />
+<TextArea label="Note" placeholder="Write a note…" value={body} onChange={onBodyChange} />
+```
+
+To change how fields look everywhere, edit `forms/field.css` in one place.
 
 ## Using react-icons
 

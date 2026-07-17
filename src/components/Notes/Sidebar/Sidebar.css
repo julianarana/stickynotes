@@ -10,8 +10,35 @@
 
 .sidebar-title {
   font-family: var(--heading);
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--text-h);
   margin: 0;
+}
+
+.sidebar-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-fieldset-label {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-h);
+  text-transform: capitalize;
+}
+
+.sidebar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sidebar-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }

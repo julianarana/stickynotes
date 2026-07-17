@@ -23,6 +23,6 @@
 }
 
 .layout-right {
-  flex: 0 0 20%;
+  flex: 0 0 25%;
   border-left: 1px solid var(--border);
 }
