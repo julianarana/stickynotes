@@ -33,3 +33,23 @@ npm run dev
 | `eslint` (+ plugins) & `@types/*`             | Linting and React/TypeScript type definitions.                                |
 
 For icon usage and the CSS approach, see the [code documentation](docs/CODE.md).
+
+
+## Features Implementd
+### Function requirements
+
+[x] Create a new note of the specified size at the specified position.
+[x] Change note size by dragging.
+[x] Move a note by dragging.
+[x] Remove a note by dragging it over a predefined "trash" zone.
+
+### Non-functional requirements
+You are encouraged to think about the best UI for these features that is
+possible to implement in the specified timeframe.
+System requirements:
+[x] The web application is intended to be used on desktop. Minimum screen
+resolution: 1024x768.
+[x] The following browsers should be supported: latest versions of Google Chrome
+(Windows and Mac), Mozilla Firefox (all platforms), Microsoft Edge.
+[x] Typescript language
+[x] No stock components used (except from icons library)
