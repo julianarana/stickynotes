@@ -14,6 +14,7 @@ stickynotes/
 │   ├── components/         # UI components, one folder per component
 │   │   └── forms/          # Reusable form fields sharing one field.css
 │   ├── config/             # App constants (canvas size, default sticky geometry)
+│   ├── types/              # Shared domain types (e.g. Note)
 │   ├── store/              # Zustand state stores
 │   ├── index.css           # Global styles: theme tokens, resets, layout base
 │   └── vite-env.d.ts       # Vite type declarations for TypeScript
@@ -64,6 +65,22 @@ function AddNoteButton() {
 
 See [`src/store/useNotesStore.ts`](../src/store/useNotesStore.ts) for the notes
 store pattern (state + actions defined together in `create`).
+
+The store is read at the **feature root** and data flows down as props:
+[`Notes`](../src/components/Notes/Notes.tsx) subscribes to `notes` and passes
+them to [`Canvas`](../src/components/Notes/Canvas/Canvas.tsx), which maps each
+note to a [`Sticky`](../src/components/Notes/Sticky/Sticky.tsx) — the component
+that renders a single absolutely-positioned note from its `x`/`y`/`w`/`h`.
+Keeping the subscription at the root leaves `Canvas` and `Sticky` pure,
+store-agnostic views.
+
+## Types
+
+Shared domain types live in [`src/types/`](../src/types/), one file per type.
+The [`Note`](../src/types/note.ts) shape (`id`, `text`, `x`, `y`, `w`, `h`) lives
+in `types/note.ts` and is imported by both the store and the components — import
+domain types from `types/`, not from the store, so data structures stay
+decoupled from state management.
 
 ## Forms
 

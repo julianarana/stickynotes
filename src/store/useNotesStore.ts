@@ -1,21 +1,23 @@
 import { create } from "zustand";
+import type { Note } from "../types/note";
 
 // Default size (in pixels) of a newly created note.
-const DEFAULT_NOTE_WIDTH = 200;
-const DEFAULT_NOTE_HEIGHT = 200;
+const DEFAULT_NOTE_WIDTH = 100;
+const DEFAULT_NOTE_HEIGHT = 100;
 
 // Default position (in pixels) of a newly created note.
 const DEFAULT_NOTE_X = 0;
 const DEFAULT_NOTE_Y = 0;
 
-export interface Note {
-  id: string; // THis unique identifier is  used to identify each note in the store - it uses internal zustand crypto UUID generator.
-  text: string;
-  x: number; // Horizontal position of the note in pixels.
-  y: number; // Vertical position of the note in pixels.
-  w: number; // Width of the note in pixels.
-  h: number; // Height of the note in pixels.
-}
+// Seed note so the canvas has something to render during development.
+const INITIAL_NOTE: Note = {
+  id: "initial-note",
+  text: "This is a test note",
+  x: 40,
+  y: 40,
+  w: DEFAULT_NOTE_WIDTH,
+  h: DEFAULT_NOTE_HEIGHT,
+};
 
 interface NotesState {
   notes: Note[];
@@ -27,7 +29,7 @@ interface NotesState {
 }
 
 export const useNotesStore = create<NotesState>((set) => ({
-  notes: [],
+  notes: [INITIAL_NOTE],
   addNote: (text) =>
     set((state) => ({
       // id is

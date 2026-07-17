@@ -1,7 +1,19 @@
-import './Canvas.css'
+import type { Note } from "../../../types/note";
+import Sticky from "../Sticky";
+import "./Canvas.css";
 
-function Canvas() {
-  return <div className="canvas" />
+interface CanvasProps {
+  notes: Note[];
 }
 
-export default Canvas
+function Canvas({ notes }: CanvasProps) {
+  return (
+    <div className="canvas">
+      {notes.map((note) => (
+        <Sticky key={note.id} note={note} />
+      ))}
+    </div>
+  );
+}
+
+export default Canvas;
