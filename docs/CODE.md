@@ -34,8 +34,8 @@ stickynotes/
    the global stylesheet enters the bundle.
 3. **`src/App.tsx`** is the root component; it renders the `Notes` feature.
    `Notes` composes the generic `Layout` shell (a centered 1024×768 two-column
-   frame) with `Canvas` (left, where stickies live) and `Sidebar` (right, the
-   selected sticky's info).
+   frame) with `Canvas` (left, where stickies live) and `NoteCreator` (right, the
+   form for building a new note).
 
 ## Tooling
 
@@ -74,13 +74,20 @@ that renders a single absolutely-positioned note from its `x`/`y`/`w`/`h`.
 Keeping the subscription at the root leaves `Canvas` and `Sticky` pure,
 store-agnostic views.
 
+Creation flows the same way in reverse:
+[`NoteCreator`](../src/components/Notes/NoteCreator/NoteCreator.tsx) holds the
+form state and, on **Create Note**, emits a `NoteDraft` through its `onCreate`
+prop — it does not touch the store itself. `Notes` passes the store's `addNote`
+as `onCreate`, so the store owns creation (it assigns the `id`).
+
 ## Types
 
 Shared domain types live in [`src/types/`](../src/types/), one file per type.
 The [`Note`](../src/types/note.ts) shape (`id`, `text`, `x`, `y`, `w`, `h`) lives
-in `types/note.ts` and is imported by both the store and the components — import
-domain types from `types/`, not from the store, so data structures stay
-decoupled from state management.
+in `types/note.ts`, alongside `NoteDraft` (`Omit<Note, "id">`) — the shape used to
+create a note before the store assigns its `id`. Both are imported by the store
+and the components — import domain types from `types/`, not from the store, so
+data structures stay decoupled from state management.
 
 ## Forms
 

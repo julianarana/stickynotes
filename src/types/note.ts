@@ -6,3 +6,5 @@ export interface Note {
   w: number; // Width of the note in pixels.
   h: number; // Height of the note in pixels.
 }
+
+export type NoteDraft = Omit<Note, "id">;

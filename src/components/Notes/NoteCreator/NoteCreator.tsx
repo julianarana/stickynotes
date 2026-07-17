@@ -7,8 +7,9 @@ import {
   MAX_POSITION_VALUE,
   MAX_STICKY_SIZE,
 } from "../../../config/canvas";
+import type { NoteDraft } from "../../../types/note";
 import { Button, ButtonVariant, TextArea, TextField } from "../../forms";
-import "./Sidebar.css";
+import "./NoteCreator.css";
 
 const DEFAULT_FORM = {
   text: "",
@@ -17,13 +18,23 @@ const DEFAULT_FORM = {
   y: DEFAULT_STICKY_Y,
 };
 
-function Sidebar() {
+interface NoteCreatorProps {
+  onCreate: (note: NoteDraft) => void;
+}
+
+function NoteCreator({ onCreate }: NoteCreatorProps) {
   const [form, setForm] = useState(DEFAULT_FORM);
 
   const clearForm = () => setForm(DEFAULT_FORM);
 
   const handleCreateNote = () => {
-    // Add additional functionality here before clearing (e.g. create the sticky).
+    onCreate({
+      text: form.text,
+      x: form.x,
+      y: form.y,
+      w: form.size,
+      h: form.size,
+    });
     clearForm();
   };
 
@@ -40,8 +51,8 @@ function Sidebar() {
     setForm({ ...form, y: Number(e.target.value) });
 
   return (
-    <aside className="sidebar">
-      <h2 className="sidebar-title">Sticky</h2>
+    <section className="note-creator">
+      <h2 className="note-creator-title">Sticky</h2>
       <TextArea label="text" value={form.text} onChange={handleTextChange} />
       <TextField
         label="size"
@@ -50,9 +61,9 @@ function Sidebar() {
         value={form.size}
         onChange={handleSizeChange}
       />
-      <div className="sidebar-fieldset">
-        <span className="sidebar-fieldset-label">position</span>
-        <div className="sidebar-grid">
+      <div className="note-creator-fieldset">
+        <span className="note-creator-fieldset-label">position</span>
+        <div className="note-creator-grid">
           <TextField
             label="x"
             type="number"
@@ -69,7 +80,7 @@ function Sidebar() {
           />
         </div>
       </div>
-      <div className="sidebar-actions">
+      <div className="note-creator-actions">
         <Button variant={ButtonVariant.Primary} onClick={handleCreateNote}>
           Create Note
         </Button>
@@ -77,8 +88,8 @@ function Sidebar() {
           Clear Form
         </Button>
       </div>
-    </aside>
+    </section>
   );
 }
 
-export default Sidebar;
+export default NoteCreator;

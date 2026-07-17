@@ -5,9 +5,9 @@ export const SIDEBAR_RATIO = 0.2
 export const CANVAS_WIDTH = APP_WIDTH * (1 - SIDEBAR_RATIO)
 export const CANVAS_HEIGHT = APP_HEIGHT
 
-export const DEFAULT_STICKY_SIZE = 60
+export const DEFAULT_STICKY_SIZE = 80
 
-export const MAX_STICKY_SIZE = 100
+export const MAX_STICKY_SIZE = 200
 export const MAX_POSITION_VALUE = 100
 
 export const DEFAULT_STICKY_X = Math.round(
