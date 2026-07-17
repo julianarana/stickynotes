@@ -92,6 +92,12 @@ size to `MIN_STICKY_SIZE` and the canvas bounds, then calls `onResizeNote` (and
 `onMoveNote` when the corner also shifts the origin). `Notes` wires `onMoveNote`
 and `onResizeNote` to the store's `moveNote`/`resizeNote`.
 
+`Canvas` also renders a circular **trash drop-zone** (a `FaRegTrashCan` icon) in
+the bottom-right corner. While moving, it checks whether the note overlaps the
+trash element's rect, highlights it, and on drop deletes the note via
+`onRemoveNote` → the store's `removeNote`. (Only the move gesture can delete;
+resizing never does.)
+
 ## Types
 
 Shared domain types live in [`src/types/`](../src/types/), one file per type.
