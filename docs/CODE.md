@@ -81,10 +81,16 @@ prop — it does not touch the store itself. `Notes` passes the store's `addNote
 as `onCreate`, so the store owns creation (it assigns the `id`).
 
 Dragging follows the same shape: `Canvas` owns the pointer-drag handlers
-(`handleDragStart`/`handleDragMove`/`handleDragEnd`) and uses pointer capture; on
-each move it clamps the note inside the canvas rect and calls the `onMoveNote`
-prop. `Sticky` just forwards its DOM pointer events (passing its own `note` on
-drag start). `Notes` wires `onMoveNote` to the store's `moveNote`.
+(`handleDragStart`/`handleDragMove`/`handleDragEnd`) and uses pointer capture.
+`Sticky` renders four corner handles (each a `<span data-corner>` with its own
+resize cursor) and forwards its DOM pointer events (passing its own `note` on
+drag start). On pointer-down, `resolveDragMode` inspects the target's
+`data-corner` to decide the gesture: a corner starts a **resize**, anywhere else
+starts a **move**. Move (`applyMove`) clamps the note inside the canvas and calls
+`onMoveNote`; resize (`applyResize`) keeps the opposite corner fixed, clamps
+size to `MIN_STICKY_SIZE` and the canvas bounds, then calls `onResizeNote` (and
+`onMoveNote` when the corner also shifts the origin). `Notes` wires `onMoveNote`
+and `onResizeNote` to the store's `moveNote`/`resizeNote`.
 
 ## Types
 

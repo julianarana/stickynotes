@@ -22,11 +22,18 @@ function Sticky({ note, onDragStart, onDragMove, onDragEnd }: StickyProps) {
         width: note.w,
         height: note.h,
       }}
+      // Compatible with all the browsers https://caniuse.com/?search=pointerdown
       onPointerDown={handlePointerDown}
+      // Compatible with all the browsers https://caniuse.com/?search=pointermove
       onPointerMove={onDragMove}
+      // Compatible with all the browsers https://caniuse.com/?search=pointerup
       onPointerUp={onDragEnd}
     >
       {note.text}
+      <span className="sticky-handle sticky-handle--nw" data-corner="nw" />
+      <span className="sticky-handle sticky-handle--ne" data-corner="ne" />
+      <span className="sticky-handle sticky-handle--sw" data-corner="sw" />
+      <span className="sticky-handle sticky-handle--se" data-corner="se" />
     </div>
   );
 }

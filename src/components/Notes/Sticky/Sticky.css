@@ -24,3 +24,33 @@
 .sticky:active {
   cursor: grabbing;
 }
+
+.sticky-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+
+.sticky-handle--nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.sticky-handle--ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.sticky-handle--sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.sticky-handle--se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}

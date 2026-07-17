@@ -7,6 +7,7 @@ export const CANVAS_HEIGHT = APP_HEIGHT
 
 export const DEFAULT_STICKY_SIZE = 80
 
+export const MIN_STICKY_SIZE = 40
 export const MAX_STICKY_SIZE = 200
 export const MAX_POSITION_VALUE = 100
 

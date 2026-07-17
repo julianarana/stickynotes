@@ -7,10 +7,13 @@ function Notes() {
   const notes = useNotesStore((state) => state.notes);
   const addNote = useNotesStore((state) => state.addNote);
   const moveNote = useNotesStore((state) => state.moveNote);
+  const resizeNote = useNotesStore((state) => state.resizeNote);
 
   return (
     <Layout
-      left={<Canvas notes={notes} onMoveNote={moveNote} />}
+      left={
+        <Canvas notes={notes} onMoveNote={moveNote} onResizeNote={resizeNote} />
+      }
       right={<NoteCreator onCreate={addNote} />}
     />
   );
