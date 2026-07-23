@@ -7,11 +7,13 @@ export const CANVAS_HEIGHT = APP_HEIGHT;
 
 export const DEFAULT_STICKY_SIZE = 80;
 
-export const MIN_STICKY_SIZE = 40;
-export const MAX_STICKY_SIZE = 200;
-export const MIN_POSITION_VALUE = 0;
-export const MAX_POSITION_VALUE = 100;
+export const MIN_STICKY_SIZE = 30;
+export const MAX_STICKY_SIZE = 100;
 export const MAX_TEXT_LENGTH = 100;
+
+export const MIN_POSITION_VALUE = 0;
+export const MAX_POSITION_X = Math.floor(CANVAS_WIDTH - MAX_STICKY_SIZE);
+export const MAX_POSITION_Y = Math.floor(CANVAS_HEIGHT - MAX_STICKY_SIZE);
 
 export const DEFAULT_STICKY_X = Math.round(
   (CANVAS_WIDTH - DEFAULT_STICKY_SIZE) / 2,
