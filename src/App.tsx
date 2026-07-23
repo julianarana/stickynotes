@@ -1,7 +1,7 @@
-import Notes from './components/Notes'
+import Notes from "./components/Notes";
 
 function App() {
-  return <Notes />
+  return <Notes />;
 }
 
-export default App
+export default App;

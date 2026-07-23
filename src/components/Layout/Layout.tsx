@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import './Layout.css'
+import type { ReactNode } from "react";
+import "./Layout.css";
 
 function Layout({ left, right }: { left: ReactNode; right: ReactNode }) {
   return (
@@ -9,7 +9,7 @@ function Layout({ left, right }: { left: ReactNode; right: ReactNode }) {
         <div className="layout-right">{right}</div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

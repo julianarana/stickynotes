@@ -94,7 +94,10 @@ function NoteCreator({ onCreate }: NoteCreatorProps) {
         onChange={handleSizeChange}
       />
       <div className="note-creator-fieldset">
-        <span className="note-creator-fieldset-label" id={`${titleId}-position`}>
+        <span
+          className="note-creator-fieldset-label"
+          id={`${titleId}-position`}
+        >
           position
         </span>
         <div

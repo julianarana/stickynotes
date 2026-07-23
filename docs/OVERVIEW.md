@@ -10,8 +10,8 @@ left/right split is the mental model to start from.
 I centered the design on one simple rule: **there is a single source of truth for
 the notes, and only one component talks to it.** All note data lives in a Zustand
 store, and the `Notes` component (the feature root) is the only place that reads
-from it. From there, data flows *down* to child components as plain props, and
-changes flow *back up* as callbacks that call store actions. So `Canvas` and the
+from it. From there, data flows _down_ to child components as plain props, and
+changes flow _back up_ as callbacks that call store actions. So `Canvas` and the
 form never mutate state directly — they signal intent ("move this note", "create
 this note") and the store does the actual work, like assigning each note its id.
 This keeps the leaf components pure and easy to reason about: given the same

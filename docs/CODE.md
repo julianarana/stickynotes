@@ -48,18 +48,18 @@ stickynotes/
 
 I use [`zustand`](https://zustand.docs.pmnd.rs/) for shared app state — a small,
 hook-based store with no provider/boilerplate. Stores live in
-[`src/store/`](../src/store/), for this app I just have  one store 
+[`src/store/`](../src/store/), for this app I just have one store
 file named `useNotesStore.ts`.
 
 Components read exactly the slices they need, so they only re-render when those
 slices change:
 
 ```tsx
-import { useNotesStore } from './store/useNotesStore'
+import { useNotesStore } from "./store/useNotesStore";
 
 function AddNoteButton() {
-  const addNote = useNotesStore((state) => state.addNote)
-  return <button onClick={() => addNote('New note')}>Add</button>
+  const addNote = useNotesStore((state) => state.addNote);
+  return <button onClick={() => addNote("New note")}>Add</button>;
 }
 ```
 
@@ -153,10 +153,12 @@ third-party icons as React components. Import icons from a specific set path so
 bundles stay lean (only the icons I use are included):
 
 ```tsx
-import { FiPlus, FiTrash2 } from 'react-icons/fi' // Feather
-import { MdPushPin } from 'react-icons/md'        // Material
+import { FiPlus, FiTrash2 } from "react-icons/fi"; // Feather
+import { MdPushPin } from "react-icons/md"; // Material
 
-<button><FiPlus size={18} /></button>
+<button>
+  <FiPlus size={18} />
+</button>;
 ```
 
 Icons inherit `currentColor`, so they automatically match the surrounding text
@@ -184,9 +186,9 @@ As the UI grows, prefer adding component-scoped styles alongside components
 
 ## Common commands
 
-| Command         | What it does                          |
-| --------------- | ------------------------------------- |
-| `npm run dev`   | Start the Vite dev server with HMR    |
-| `npm run build` | Type-check and build for production   |
+| Command           | What it does                         |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite dev server with HMR   |
+| `npm run build`   | Type-check and build for production  |
 | `npm run preview` | Preview the production build locally |
-| `npm run lint`  | Run ESLint over the project           |
+| `npm run lint`    | Run ESLint over the project          |

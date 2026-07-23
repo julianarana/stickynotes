@@ -35,8 +35,7 @@ const clamp = (value: number, min: number, max: number) =>
 // (data-corner) resizes; anywhere else on the sticky moves it.
 const resolveDragMode = (target: EventTarget | null): DragMode => {
   const corner = (target as HTMLElement | null)?.dataset?.corner as
-    | Corner
-    | undefined;
+    Corner | undefined;
   return corner ? { type: "resize", corner } : { type: "move" };
 };
 
@@ -56,7 +55,6 @@ function Canvas({
     overTrashRef.current = over;
     setIsOverTrash(over);
   }, []);
-
 
   // Calculates if the sticky being dragges is over the trash zone.
   const isOverTrashZone = useCallback(
@@ -112,7 +110,13 @@ function Canvas({
   // This updates the size of the sticky being dragged. It calculates the new size based on the
   //  corner being dragged and the position of the mouse.
   const applyResize = useCallback(
-    (drag: DragState, corner: Corner, rect: DOMRect, px: number, py: number) => {
+    (
+      drag: DragState,
+      corner: Corner,
+      rect: DOMRect,
+      px: number,
+      py: number,
+    ) => {
       const isNorth = corner[0] === "n";
       const isWest = corner[1] === "w";
       // The corner opposite the one being dragged stays fixed (the anchor).
@@ -139,9 +143,9 @@ function Canvas({
     [onResizeNote, onMoveNote],
   );
 
-    //Handler for the movement of the sticky. It calculates the position of the mouse
-  // calculates if is over the trash 
-  // and decides whether is moving or resizing depending on the mode. 
+  //Handler for the movement of the sticky. It calculates the position of the mouse
+  // calculates if is over the trash
+  // and decides whether is moving or resizing depending on the mode.
   // This ends up calling the correct function to update the note's position or size.
   const handleDragMove = useCallback(
     (e: PointerEvent<HTMLDivElement>) => {
@@ -171,7 +175,6 @@ function Canvas({
     },
     [applyMove, applyResize, setOverTrash],
   );
-
 
   // Callback for handling the drag end. It checks if the sticky is over the trash zone and removes it if so.
   // Finally clears the reference of the sticky.
