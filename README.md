@@ -18,24 +18,24 @@ npm run dev
 
 ### Runtime dependencies
 
-| Library                                            | Why it's here                                                                    |
-| -------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`react`](https://react.dev/) / `react-dom`        | UI library used to build and render the app.                                     |
-| [`zustand`](https://zustand.docs.pmnd.rs/)         | Lightweight state management for shared app state (the "state handler").          |
+| Library                                                     | Why it's here                                                                                                                  |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [`react`](https://react.dev/) / `react-dom`                 | UI library used to build and render the app.                                                                                   |
+| [`zustand`](https://zustand.docs.pmnd.rs/)                  | Lightweight state management for shared app state (the "state handler").                                                       |
 | [`react-icons`](https://react-icons.github.io/react-icons/) | Reuse third-party icons (Feather, Material, etc.) as React components, importing per-set so only the icons we use are bundled. |
 
 ### Dev dependencies
 
-| Library                                       | Why it's here                                                                 |
-| --------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`typescript`](https://www.typescriptlang.org/) | Required — the project is written in TypeScript for type safety.            |
-| [`vite`](https://vite.dev/) + `@vitejs/plugin-react` | Dev server (HMR) and production bundler.                              |
-| `eslint` (+ plugins) & `@types/*`             | Linting and React/TypeScript type definitions.                                |
+| Library                                              | Why it's here                                                    |
+| ---------------------------------------------------- | ---------------------------------------------------------------- |
+| [`typescript`](https://www.typescriptlang.org/)      | Required — the project is written in TypeScript for type safety. |
+| [`vite`](https://vite.dev/) + `@vitejs/plugin-react` | Dev server (HMR) and production bundler.                         |
+| `eslint` (+ plugins) & `@types/*`                    | Linting and React/TypeScript type definitions.                   |
 
 For icon usage and the CSS approach, see the [code documentation](docs/CODE.md).
 
-
 ## Features Implementd
+
 ### Function requirements
 
 [x] Create a new note of the specified size at the specified position.
@@ -44,6 +44,7 @@ For icon usage and the CSS approach, see the [code documentation](docs/CODE.md).
 [x] Remove a note by dragging it over a predefined "trash" zone.
 
 ### Non-functional requirements
+
 You are encouraged to think about the best UI for these features that is
 possible to implement in the specified timeframe.
 System requirements:

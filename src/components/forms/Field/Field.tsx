@@ -1,16 +1,16 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 function Field({
   label,
   htmlFor,
   children,
 }: {
-  label?: ReactNode
-  htmlFor: string
-  children: ReactNode
+  label?: ReactNode;
+  htmlFor: string;
+  children: ReactNode;
 }) {
   if (!label) {
-    return <>{children}</>
+    return <>{children}</>;
   }
 
   return (
@@ -20,7 +20,7 @@ function Field({
       </label>
       {children}
     </div>
-  )
+  );
 }
 
-export default Field
+export default Field;

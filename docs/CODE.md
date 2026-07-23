@@ -48,18 +48,18 @@ stickynotes/
 
 I use [`zustand`](https://zustand.docs.pmnd.rs/) for shared app state — a small,
 hook-based store with no provider/boilerplate. Stores live in
-[`src/store/`](../src/store/), for this app I just have  one store 
+[`src/store/`](../src/store/), for this app I just have one store
 file named `useNotesStore.ts`.
 
 Components read exactly the slices they need, so they only re-render when those
 slices change:
 
 ```tsx
-import { useNotesStore } from './store/useNotesStore'
+import { useNotesStore } from "./store/useNotesStore";
 
 function AddNoteButton() {
-  const addNote = useNotesStore((state) => state.addNote)
-  return <button onClick={() => addNote('New note')}>Add</button>
+  const addNote = useNotesStore((state) => state.addNote);
+  return <button onClick={() => addNote("New note")}>Add</button>;
 }
 ```
 
@@ -68,11 +68,12 @@ store pattern (state + actions defined together in `create`).
 
 The store is read at the **feature root** and data flows down as props:
 [`Notes`](../src/components/Notes/Notes.tsx) subscribes to `notes` and passes
-them to [`Canvas`](../src/components/Notes/Canvas/Canvas.tsx), which maps each
-note to a [`Sticky`](../src/components/Notes/Sticky/Sticky.tsx) — the component
-that renders a single absolutely-positioned note from its `x`/`y`/`w`/`h`.
-Keeping the subscription at the root leaves `Canvas` and `Sticky` pure,
-store-agnostic views.
+them to [`Canvas`](../src/components/Notes/Canvas/Canvas.tsx), which renders every
+note onto a single HTML `<canvas>`. Its `draw()` routine paints each note
+(rounded background, border, and hand-wrapped, vertically-centered text) from the
+note's `x`/`y`/`w`/`h`, scaling for device-pixel-ratio so text stays crisp on
+retina, and redraws whenever `notes` changes. Keeping the subscription at the
+root leaves `Canvas` a pure, store-agnostic view.
 
 Creation flows the same way in reverse:
 [`NoteCreator`](../src/components/Notes/NoteCreator/NoteCreator.tsx) holds the
@@ -80,23 +81,24 @@ form state and, on **Create Note**, emits a `NoteDraft` through its `onCreate`
 prop — it does not touch the store itself. `Notes` passes the store's `addNote`
 as `onCreate`, so the store owns creation (it assigns the `id`).
 
-Dragging follows the same shape: `Canvas` owns the pointer-drag handlers
-(`handleDragStart`/`handleDragMove`/`handleDragEnd`) and uses pointer capture.
-`Sticky` renders four corner handles (each a `<span data-corner>` with its own
-resize cursor) and forwards its DOM pointer events (passing its own `note` on
-drag start). On pointer-down, `resolveDragMode` inspects the target's
-`data-corner` to decide the gesture: a corner starts a **resize**, anywhere else
-starts a **move**. Move (`applyMove`) clamps the note inside the canvas and calls
-`onMoveNote`; resize (`applyResize`) keeps the opposite corner fixed, clamps
-size to `MIN_STICKY_SIZE` and the canvas bounds, then calls `onResizeNote` (and
-`onMoveNote` when the corner also shifts the origin). `Notes` wires `onMoveNote`
-and `onResizeNote` to the store's `moveNote`/`resizeNote`.
+Dragging and resizing are handled entirely on the canvas — there are no
+per-note DOM elements. `Canvas` attaches pointer handlers to the `<canvas>`
+element and uses pointer capture. On pointer-down, `hitTest` finds the top-most
+note under the pointer and `cornerAt` decides the gesture: within ~16px of a
+corner starts a **resize**, anywhere else on the note starts a **move**. Move
+(`applyMove`) clamps the note inside the canvas and calls `onMoveNote`; resize
+(`applyResize`) keeps the opposite corner fixed, clamps size to `MIN_STICKY_SIZE`
+and the canvas bounds, then calls `onResizeNote` (and `onMoveNote` when the corner
+also shifts the origin). The cursor is updated on hover to reflect move vs.
+resize. `Notes` wires `onMoveNote`/`onResizeNote` to `moveNote`/`resizeNote`.
 
-`Canvas` also renders a circular **trash drop-zone** (a `FaRegTrashCan` icon) in
-the bottom-right corner. While moving, it checks whether the note overlaps the
-trash element's rect, highlights it, and on drop deletes the note via
-`onRemoveNote` → the store's `removeNote`. (Only the move gesture can delete;
-resizing never does.)
+The circular **trash drop-zone** (a `FaRegTrashCan` icon) stays a DOM element
+_behind_ the canvas — since the canvas is transparent except where notes are
+painted, the trash shows through in the bottom-right corner, and a note dragged
+over it paints on top. While moving, `Canvas` checks whether the note overlaps
+the trash's rect, highlights it, and on drop deletes the note via `onRemoveNote`
+→ the store's `removeNote`. (Only the move gesture can delete; resizing never
+does.)
 
 ## Types
 
@@ -153,10 +155,12 @@ third-party icons as React components. Import icons from a specific set path so
 bundles stay lean (only the icons I use are included):
 
 ```tsx
-import { FiPlus, FiTrash2 } from 'react-icons/fi' // Feather
-import { MdPushPin } from 'react-icons/md'        // Material
+import { FiPlus, FiTrash2 } from "react-icons/fi"; // Feather
+import { MdPushPin } from "react-icons/md"; // Material
 
-<button><FiPlus size={18} /></button>
+<button>
+  <FiPlus size={18} />
+</button>;
 ```
 
 Icons inherit `currentColor`, so they automatically match the surrounding text
@@ -184,9 +188,9 @@ As the UI grows, prefer adding component-scoped styles alongside components
 
 ## Common commands
 
-| Command         | What it does                          |
-| --------------- | ------------------------------------- |
-| `npm run dev`   | Start the Vite dev server with HMR    |
-| `npm run build` | Type-check and build for production   |
+| Command           | What it does                         |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite dev server with HMR   |
+| `npm run build`   | Type-check and build for production  |
 | `npm run preview` | Preview the production build locally |
-| `npm run lint`  | Run ESLint over the project           |
+| `npm run lint`    | Run ESLint over the project          |
