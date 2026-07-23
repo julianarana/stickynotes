@@ -36,6 +36,13 @@
   gap: 12px;
 }
 
+.note-creator-error {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--danger, #d93025);
+}
+
 .note-creator-actions {
   margin-top: auto;
   display: flex;
