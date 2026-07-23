@@ -11,7 +11,9 @@ export const MIN_STICKY_SIZE = 30;
 export const MAX_STICKY_SIZE = 100;
 export const MAX_TEXT_LENGTH = 100;
 
-export const MIN_POSITION_VALUE = 0;
+export const MIN_POSITION_VALUE = 0
+export const MAX_POSITION_VALUE = 100
+
 export const MAX_POSITION_X = Math.floor(CANVAS_WIDTH - MAX_STICKY_SIZE);
 export const MAX_POSITION_Y = Math.floor(CANVAS_HEIGHT - MAX_STICKY_SIZE);
 
